@@ -4,9 +4,42 @@ var openStreetMapLayer = new ol.layer.Tile({
         source: new ol.source.OSM() 
      });
 
+var pnoaLayer = new ol.layer.Image({
+          name: 'PNOA Map',
+          source: new ol.source.ImageWMS({
+            url: 'http://www.ign.es/wms-inspire/pnoa-ma',
+            params : {
+                        'LAYERS' : 'OI.OrthoimageCoverage'
+                      }
+          }),
+          visible: false
+        });
+
+var adminLayer = new ol.layer.Image({
+          name: 'Spain administrative units',
+          source: new ol.source.ImageWMS({
+            url: 'http://www.ign.es/wms-inspire/unidades-administrativas',
+            params : {
+                        'LAYERS' : 'AU.AdministrativeBoundary'
+                      }
+          }),
+          visible: false
+        });
+
+var usaStatesLayer = new ol.layer.Image({
+          name: 'USA States',
+          visible: false,
+          extent: [-13884991, 2870341, -7455066, 6338219],
+          source: new ol.source.ImageWMS({
+            url: 'http://demo.boundlessgeo.com/geoserver/wms',
+            params: {'LAYERS': 'topp:states'},
+            serverType: 'geoserver'
+          })
+        });
+
 var map = new ol.Map({ 
    layers: [ 
-      openStreetMapLayer
+      openStreetMapLayer, pnoaLayer, adminLayer, usaStatesLayer
    ], 
    target: 'map', 
    view: new ol.View({ 
