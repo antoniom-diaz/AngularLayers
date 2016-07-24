@@ -15,6 +15,11 @@ var pnoaLayer = new ol.layer.Image({
           visible: false
         });
 
+var baseMapsGroup = new ol.layer.Group({
+  name: 'Base maps',
+  layers: [openStreetMapLayer, pnoaLayer]
+});
+
 var adminLayer = new ol.layer.Image({
           name: 'Spain administrative units',
           source: new ol.source.ImageWMS({
@@ -37,9 +42,14 @@ var usaStatesLayer = new ol.layer.Image({
           })
         });
 
+var administrativeBoundaryGroup = new ol.layer.Group({
+  name: 'Administrative boundaries',
+  layers: [adminLayer, usaStatesLayer]
+});
+
 var map = new ol.Map({ 
    layers: [ 
-      openStreetMapLayer, pnoaLayer, adminLayer, usaStatesLayer
+      baseMapsGroup, administrativeBoundaryGroup
    ], 
    target: 'map', 
    view: new ol.View({ 
