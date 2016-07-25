@@ -23,12 +23,19 @@
 					<div class="col-sm-2 sidenav" style="background-color:#A9CCE3">
 						<div class="affix" style="background-color:#A9CCE3; height:100%; width:100%">
 							<h4>Layers</h4>
-      					<div class="checkbox" ng-repeat="layer in layers">
-      						<label>
-      							<input type="checkbox" ng-click="toggleLayer(layer)"> {{layer.U.name}}
-      						</label>
-						</div>
-      					
+      						<!--<div class="checkbox" ng-repeat="layer in layers">
+      							<label>
+      								<input type="checkbox" ng-click="toggleLayer(layer)"> {{layer.get('name')}}
+      							</label>
+      							<div class="checkbox inline" ng-repeat="layerGrouped in layer.getLayers().getArray()">
+      								<label>
+      									<input type="checkbox" ng-click="toggleLayer(layerGrouped)"> {{layerGrouped.get('name')}}
+      								</label>
+      							</div>
+							</div> -->
+							<div ng-repeat="layer in layers">
+								<layersMenu layer="layer"></layersMenu>
+							</div>
                  		</div>
 					</div>
 					<div class="col-sm-10">
@@ -41,5 +48,6 @@
 		</div>
 		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
 		<script src="public/js/layoutOpenLayers.js" type="text/javascript"></script>
+		<script src="public/js/directives/layersMenu.js"></script>
 	</body>
 </html> 
