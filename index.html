@@ -9,32 +9,27 @@
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://openlayers.org/en/master/css/ol.css" type="text/css">
 		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+		<script src="public/js/app.js"></script>
+		<script src="public/js/controllers/MainController.js"></script>
+		<script src="public/js/directives/layersMenu.js"></script>
 		
 	</head>
 	<header>
 		<div style="height: 90px">
 		</div>
 	</header>
-	<body ng-controller="mainController">
+	<body ng-app="angularLayers">
 
 		<div>
-			<div class="container-fluid">
+			<div class="container-fluid"  ng-controller="mainController">
 				<div class="row content">
 					<div class="col-sm-2 sidenav" style="background-color:#A9CCE3">
 						<div class="affix" style="background-color:#A9CCE3; height:100%; width:100%">
 							<h4>Layers</h4>
-      						<!--<div class="checkbox" ng-repeat="layer in layers">
-      							<label>
-      								<input type="checkbox" ng-click="toggleLayer(layer)"> {{layer.get('name')}}
-      							</label>
-      							<div class="checkbox inline" ng-repeat="layerGrouped in layer.getLayers().getArray()">
-      								<label>
-      									<input type="checkbox" ng-click="toggleLayer(layerGrouped)"> {{layerGrouped.get('name')}}
-      								</label>
-      							</div>
-							</div> -->
 							<div ng-repeat="layer in layers">
-								<layersMenu layer="layer"></layersMenu>
+								<layers-menu layer="layer" ng-controller="mainController"></layers-menu>
 							</div>
                  		</div>
 					</div>
@@ -46,8 +41,6 @@
 				</div>
 			</div> 
 		</div>
-		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-		<script src="public/js/layoutOpenLayers.js" type="text/javascript"></script>
-		<script src="public/js/directives/layersMenu.js"></script>
+		<script src="public/js/map/MapCreation.js" type="text/javascript"></script>
 	</body>
 </html> 

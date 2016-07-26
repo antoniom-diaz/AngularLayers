@@ -2,7 +2,8 @@ app.directive('layersMenu', function() {
   return { 
     restrict: 'E', 
     scope: {
+    	layer: '=' 
     },
-    templateUrl: 'js/directives/layersMenu.html' 
+    templateUrl: 'public/js/directives/layersMenu.html'
   }; 
 });
