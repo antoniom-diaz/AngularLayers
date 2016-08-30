@@ -1,1 +1,1 @@
-var app = angular.module("angularLayers", []);
+var app = angular.module("angularLayers", ['ngMaterial']);

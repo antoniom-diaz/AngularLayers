@@ -1,4 +1,4 @@
-app.controller('mainController',function($scope){
+app.controller('mainController',function($scope, $mdDialog){
 
   $scope.layers = [];  
 
@@ -13,18 +13,17 @@ app.controller('mainController',function($scope){
   }
 
   $scope.queryDatabase = function() {
-	$mdDialog.show(
-	$mdDialog.alert()
-		.clickOutsideToClose(true)
-		.title('Opening from the left')
-		.textContent('Closing to the right!')
-		.ariaLabel('Left to right demo')
-		.ok('Nice!')
-        // You can specify either sting with query selector
-		.openFrom('#left')
-        // or an element
-		.closeTo(angular.element(document.querySelector('#right')))
-    );
+      var alert = $mdDialog.alert({
+        title: 'Attention',
+        textContent: 'This is an example of how easy dialogs can be!',
+        ok: 'Close'
+      });
+      
+      $mdDialog
+        .show( alert )
+        .finally(function() {
+          alert = undefined;
+        });
   };
 });
 

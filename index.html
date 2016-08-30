@@ -8,17 +8,18 @@
 
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://openlayers.org/en/master/css/ol.css" type="text/css">
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 
 		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 
-		<!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-		<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js">-->
+		<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
 
 		<script src="public/js/app.js"></script>
 		<script src="public/js/controllers/MainController.js"></script>
@@ -35,7 +36,7 @@
 	<body ng-app="angularLayers">
 
 		<div>
-			<div class="container-fluid">
+			<div class="container-fluid" ng-controller="mainController">
 				<div class="row content" style="position:fixed; height:100%; width:100%">
 					<div class="col-sm-2" style="height:100%; padding-right:0">
 						<div class="panel panel-default" style="height:100%">
@@ -55,7 +56,7 @@
 										</div>
 									</div>
 									<div id="collapse1" class="panel-collapse collapse in">
-										<div class="panel-body" ng-controller="mainController">
+										<div class="panel-body">
 											<div ng-repeat="layer in layers">
 												<layers-menu layer="layer"></layers-menu>
 											</div>
@@ -72,7 +73,7 @@
 										</div>
 									</div>
 									<div id="collapse2" class="panel-collapse collapse in">
-										<div class="panel-body">
+										<div class="panel-body" id="panelQuery">
 											<button ng-click="queryDatabase()">
 												Queries the database
 											</button>
