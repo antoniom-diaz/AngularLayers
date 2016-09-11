@@ -4,7 +4,7 @@ var app = express();
 
 mongoose.connect('mongodb://localhost:27017/angularLayers');
 
-var town = mongoose.model('Town',{
+var Town = mongoose.model('Town',{
     name: String,
     code: String
 });
@@ -22,6 +22,24 @@ app.configure(function() {
 
 app.get('/', function(req, res){
 	res.sendfile('./index.html');
+});
+
+app.get('/api/towns', function(req, res) {  
+    /*Town.create({
+        name: 'Almendralejo',
+        code: '06200'
+    }, function(err, town){
+        if(err) {
+            res.send(err);
+        }*/
+
+        Town.find(function(err, towns) {
+            if(err){
+                res.send(err);
+            }
+            res.json(towns);
+        });
+    //});
 });
 
 app.listen(8080, function(){

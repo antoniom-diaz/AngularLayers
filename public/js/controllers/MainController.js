@@ -1,4 +1,4 @@
-app.controller('mainController',function($scope, $mdDialog){
+app.controller('mainController',function($scope, $mdDialog, $http){
 
   $scope.layers = [];  
 
@@ -13,9 +13,13 @@ app.controller('mainController',function($scope, $mdDialog){
   }
 
   $scope.queryDatabase = function() {
-      var alert = $mdDialog.alert({
-        title: 'Attention',
-        textContent: 'This is an example of how easy dialogs can be!',
+
+    $http.get('/api/towns')
+      .success(function(response){
+
+        var alert = $mdDialog.alert({
+        title: 'Towns',
+        textContent: response[2].name +', '+ response[2].code,
         ok: 'Close'
       });
       
@@ -24,6 +28,11 @@ app.controller('mainController',function($scope, $mdDialog){
         .finally(function() {
           alert = undefined;
         });
-  };
+      })
+      .error(function(error){
+        console.log(error);
+      });
+  }
+
 });
 
