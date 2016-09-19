@@ -20,7 +20,7 @@ app.configure(function() {
     app.use(express.methodOverride());
 });
 
-app.get('/', function(req, res){
+app.get('/angularlayers', function(req, res){
 	res.sendfile('./index.html');
 });
 

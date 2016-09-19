@@ -1,10 +1,8 @@
-app.controller('mainController', function($scope, $mdDialog, $http){
+app.controller('mainController', function($scope, $mdDialog, $http, $timeout){
 
+  console.log('Hola');
   $scope.layers = [];
 
-  /*$scope.gridData = [{name: 'Almendralejo', code: '06200'},
-                          {name: 'Madrid', code: '28015'}];*/
-  var gridData;
   $scope.gridData;
 
   map.getLayers().forEach(function(layer){
@@ -12,19 +10,19 @@ app.controller('mainController', function($scope, $mdDialog, $http){
   });
 
   $scope.toggleLayer = function(layer) {
-    
-    console.log('toggleLayer');
-
     var toggle = !(layer.getVisible());
 
+    console.log('Bueno');
     layer.setVisible(toggle);
   }
 
   $scope.queryDatabase = function() {
 
+    console.log('La vida');
+
     $http.get('/api/towns')
       .success(function(response){
-
+        console.log('Adios');
         $scope.gridData = [{name: 'Almendralejo', code: '06200'},
                             {name: 'Madrid', code: '28015'}];
 
@@ -33,11 +31,9 @@ app.controller('mainController', function($scope, $mdDialog, $http){
           templateUrl:'public/js/directives/grid.html',
           clickOutsideToClose: true
         });
-
-        console.log('Aqui');
         
         $mdDialog
-          .show( alert )
+          .show(alert)
           .finally(function() {
             alert = undefined;
         });
@@ -45,9 +41,9 @@ app.controller('mainController', function($scope, $mdDialog, $http){
       .error(function(error){
         console.log(error);
       });
+  };
 
-
-  }
+  console.log('Pasa');
 
   function DialogController($scope, $mdDialog) {
     $scope.hide = function() {
