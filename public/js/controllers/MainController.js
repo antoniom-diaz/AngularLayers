@@ -1,12 +1,20 @@
-app.controller('mainController',function($scope, $mdDialog, $http){
+app.controller('mainController', function($scope, $mdDialog, $http){
 
-  $scope.layers = [];  
+  $scope.layers = [];
+
+  /*$scope.gridData = [{name: 'Almendralejo', code: '06200'},
+                          {name: 'Madrid', code: '28015'}];*/
+  var gridData;
+  $scope.gridData;
 
   map.getLayers().forEach(function(layer){
     $scope.layers.push(layer);
   });
 
   $scope.toggleLayer = function(layer) {
+    
+    console.log('toggleLayer');
+
     var toggle = !(layer.getVisible());
 
     layer.setVisible(toggle);
@@ -17,21 +25,42 @@ app.controller('mainController',function($scope, $mdDialog, $http){
     $http.get('/api/towns')
       .success(function(response){
 
+        $scope.gridData = [{name: 'Almendralejo', code: '06200'},
+                            {name: 'Madrid', code: '28015'}];
+
         var alert = $mdDialog.alert({
-        title: 'Towns',
-        textContent: response[2].name +', '+ response[2].code,
-        ok: 'Close'
-      });
-      
-      $mdDialog
-        .show( alert )
-        .finally(function() {
-          alert = undefined;
+          controller: DialogController,
+          templateUrl:'public/js/directives/grid.html',
+          clickOutsideToClose: true
+        });
+
+        console.log('Aqui');
+        
+        $mdDialog
+          .show( alert )
+          .finally(function() {
+            alert = undefined;
         });
       })
       .error(function(error){
         console.log(error);
       });
+
+
+  }
+
+  function DialogController($scope, $mdDialog) {
+    $scope.hide = function() {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function() {
+      $mdDialog.cancel();
+    };
+
+    $scope.answer = function(answer) {
+      $mdDialog.hide(answer);
+    };
   }
 
 });

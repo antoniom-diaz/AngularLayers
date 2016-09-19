@@ -1,0 +1,23 @@
+<md-dialog>
+	
+	<md-toolbar>
+		<div class="md-toolbar-tools" style="background-color:#000000">
+			<h1>Towns</h1>
+		</div>
+	</md-toolbar>
+
+	
+	<md-content class="md-padding">
+		<div ng-controller="mainController">
+			<div ui-grid="{ data: gridData }" class="customGrid"></div>
+		</div>
+	</md-content>
+
+	<md-dialog-actions layout="row">
+		<span flex></span>
+		<md-button ng-click="cancel()" style="margin-right:20px;" >
+			Close
+		</md-button>
+	</md-dialog-actions>
+
+</md-dialog>

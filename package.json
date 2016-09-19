@@ -5,6 +5,7 @@
     "main": "server.js",
     "dependencies": {
         "express": "~3.x",
-        "mongoose": "latest"
+        "mongoose": "latest",
+        "angular-ui-grid": "3.2.3"
     }
 }

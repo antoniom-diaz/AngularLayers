@@ -1,1 +1,1 @@
-var app = angular.module("angularLayers", ['ngMaterial']);
+var app = angular.module("angularLayers", ['ngMaterial', 'ui.grid']);
