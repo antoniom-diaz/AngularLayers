@@ -68,7 +68,7 @@
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
-										Database queries
+										Database operations
 										<div style="width:20px; height:20px; float:right">
 											<a data-toggle="collapse" href="#collapse2">
 											<img src="public/img/down-arrow.png" height="20" width="20">
@@ -76,10 +76,50 @@
 										</div>
 									</div>
 									<div id="collapse2" class="panel-collapse collapse in">
-										<div class="panel-body" id="panelQuery">
+										<!--<div class="panel-body" id="panelQuery">
 											<button ng-click="queryDatabase()">
 												Queries the database
 											</button>
+										</div>-->
+										<div class="panel-group" id="accordion">
+											<div class="panel panel-default" style="margin:0">
+												<div class="panel-heading">
+													<h6>
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+														Add a town to the database</a>
+													</h6>
+												</div>
+												<div id="collapse3" class="panel-collapse collapse in">
+													<div class="panel-body">
+														<div class="form-group">
+															<label>Name:</label>
+															<input type="text" class="form-control" ng-model="townName">
+														</div>
+														<div class="form-group">
+															<label>Code:</label>
+															<input type="text" class="form-control" ng-model="townCode">
+														</div>
+														<button ng-click="createElement()">
+															Add the town
+														</button>
+													</div>
+												</div>
+											</div>
+											<div class="panel panel-default" style="margin:0">
+												<div class="panel-heading">
+													<h6>
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+														Get the towns table</a>
+													</h6>
+												</div>
+												<div id="collapse4" class="panel-collapse collapse">
+													<div class="panel-body">
+														<button ng-click="queryDatabase()">
+															Queries the database
+														</button>
+													</div>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>

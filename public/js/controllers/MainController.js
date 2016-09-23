@@ -3,6 +3,7 @@ app.controller('mainController', function($scope, $mdDialog, $http){
   $scope.layers = [];
 
   var gridData;
+  var textAlert;
 
   map.getLayers().forEach(function(layer){
     $scope.layers.push(layer);
@@ -16,7 +17,7 @@ app.controller('mainController', function($scope, $mdDialog, $http){
 
   $scope.queryDatabase = function() {
 
-    $http.get('/api/towns')
+    $http.get('/angularlayers/api/towns')
       .success(function(response){
         
         gridData = [];
@@ -28,7 +29,7 @@ app.controller('mainController', function($scope, $mdDialog, $http){
         var alert = $mdDialog.alert({
           controller: DialogController,
           templateUrl:'public/js/directives/grid.html',
-          clickOutsideToClose: true
+          clickOutsideToClose: false
         });
         
         $mdDialog
@@ -42,9 +43,32 @@ app.controller('mainController', function($scope, $mdDialog, $http){
       });
   };
 
+  $scope.createElement = function() {
+
+    var town = {name:$scope.townName, code:$scope.townCode}
+
+    $http.post('/angularlayers/api/createTown', town)
+      .success(function(response){
+        var alert = $mdDialog.alert({
+          controller:DialogController,
+          templateUrl:'public/js/directives/alert.html',
+          clickOutsideToClose: false
+        });
+
+        textAlert = response;
+
+        $mdDialog.show(alert);
+
+      })
+      .error(function(error){
+        console.log(error);
+      });
+  }
+
   function DialogController($scope, $mdDialog) {
 
     $scope.gridData = gridData;
+    $scope.textAlert = textAlert;
 
     $scope.hide = function() {
       $mdDialog.hide();

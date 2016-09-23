@@ -24,7 +24,7 @@ app.get('/angularlayers', function(req, res){
 	res.sendfile('./index.html');
 });
 
-app.get('/api/towns', function(req, res) {  
+app.get('/angularlayers/api/towns', function(req, res) {  
     /*Town.create({
         name: 'Almendralejo',
         code: '06200'
@@ -40,6 +40,20 @@ app.get('/api/towns', function(req, res) {
             res.json(towns);
         });
     //});
+});
+
+app.post('/angularlayers/api/createTown', function(req, res){
+
+    Town.create({
+        name:req.body.name,
+        code:req.body.code
+    }, function(err, town){
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(req.body.name + ' created');
+        }
+    });
 });
 
 app.listen(8080, function(){
