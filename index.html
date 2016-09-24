@@ -76,11 +76,6 @@
 										</div>
 									</div>
 									<div id="collapse2" class="panel-collapse collapse in">
-										<!--<div class="panel-body" id="panelQuery">
-											<button ng-click="queryDatabase()">
-												Queries the database
-											</button>
-										</div>-->
 										<div class="panel-group" id="accordion">
 											<div class="panel panel-default" style="margin:0">
 												<div class="panel-heading">
@@ -93,11 +88,11 @@
 													<div class="panel-body">
 														<div class="form-group">
 															<label>Name:</label>
-															<input type="text" class="form-control" ng-model="townName">
+															<input type="text" class="form-control" ng-model="townNameCreate">
 														</div>
 														<div class="form-group">
 															<label>Code:</label>
-															<input type="text" class="form-control" ng-model="townCode">
+															<input type="text" class="form-control" ng-model="townCodeCreate">
 														</div>
 														<button ng-click="createElement()">
 															Add the town
@@ -109,10 +104,29 @@
 												<div class="panel-heading">
 													<h6>
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-														Get the towns table</a>
+														Find a town</a>
 													</h6>
 												</div>
 												<div id="collapse4" class="panel-collapse collapse">
+													<div class="panel-body">
+														<div class="form-group">
+															<label>Name:</label>
+															<input type="text" class="form-control" ng-model="townNameFind">
+														</div>
+														<button ng-click="findElement()">
+															Find the town
+														</button>
+													</div>
+												</div>
+											</div>
+											<div class="panel panel-default" style="margin:0">
+												<div class="panel-heading">
+													<h6>
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+														Get the towns table</a>
+													</h6>
+												</div>
+												<div id="collapse5" class="panel-collapse collapse">
 													<div class="panel-body">
 														<button ng-click="queryDatabase()">
 															Queries the database

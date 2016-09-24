@@ -45,10 +45,11 @@ app.controller('mainController', function($scope, $mdDialog, $http){
 
   $scope.createElement = function() {
 
-    var town = {name:$scope.townName, code:$scope.townCode}
+    var town = {name:$scope.townNameCreate, code:$scope.townCodeCreate};
 
     $http.post('/angularlayers/api/createTown', town)
       .success(function(response){
+
         var alert = $mdDialog.alert({
           controller:DialogController,
           templateUrl:'public/js/directives/alert.html',
@@ -63,6 +64,30 @@ app.controller('mainController', function($scope, $mdDialog, $http){
       .error(function(error){
         console.log(error);
       });
+  }
+
+  $scope.findElement = function() {
+
+    var town = {name: $scope.townNameFind};
+
+    $http.post('/angularlayers/api/findTown', town)
+      .success(function (response){
+
+        gridData = [];
+        
+        for (var i = 0; i<response.length; i++) {
+          gridData.push({name: response[i]['name'], code : response[i]['code']});
+        }
+
+        var alert = $mdDialog.alert({
+          controller: DialogController,
+          templateUrl: 'public/js/directives/grid.html',
+          clickOutsideToClose: false
+        });
+
+        $mdDialog.show(alert);
+
+      })
   }
 
   function DialogController($scope, $mdDialog) {
