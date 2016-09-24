@@ -84,7 +84,7 @@
 														Add a town to the database</a>
 													</h6>
 												</div>
-												<div id="collapse3" class="panel-collapse collapse in">
+												<div id="collapse3" class="panel-collapse collapse">
 													<div class="panel-body">
 														<div class="form-group">
 															<label>Name:</label>
@@ -123,10 +123,29 @@
 												<div class="panel-heading">
 													<h6>
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-														Get the towns table</a>
+														Remove a town from the Database</a>
 													</h6>
 												</div>
 												<div id="collapse5" class="panel-collapse collapse">
+													<div class="panel-body">
+														<div class="form-group">
+															<label>Name:</label>
+															<input type="text" class="form-control" ng-model="townNameRemove">
+														</div>
+														<button ng-click="removeElement()">
+															Remove the town
+														</button>
+													</div>
+												</div>
+											</div>
+											<div class="panel panel-default" style="margin:0">
+												<div class="panel-heading">
+													<h6>
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
+														Get the towns table</a>
+													</h6>
+												</div>
+												<div id="collapse6" class="panel-collapse collapse">
 													<div class="panel-body">
 														<button ng-click="queryDatabase()">
 															Queries the database

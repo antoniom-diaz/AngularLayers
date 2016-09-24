@@ -63,6 +63,20 @@ app.post('/angularlayers/api/findTown', function(req, res){
 
 });
 
+app.post('/angularlayers/api/removeTown', function(req, res){
+
+    Town.remove({
+        name: req.body.name
+    }, function(err, town){
+        if(err){
+            res.send(err);
+        } else {
+            res.send(req.body.name + ' removed');
+        }
+    });
+
+});
+
 app.listen(8080, function(){
 	console.log('Listening on port 8080');
 });

@@ -88,6 +88,31 @@ app.controller('mainController', function($scope, $mdDialog, $http){
         $mdDialog.show(alert);
 
       })
+      .error(function(error){
+        console.log(error)
+      });
+  }
+
+  $scope.removeElement = function() {
+
+    var town = {name: $scope.townNameRemove};
+
+    $http.post('/angularlayers/api/removeTown', town)
+      .success(function (response){
+
+        var alert = $mdDialog.alert({
+          controller: DialogController,
+          templateUrl: 'public/js/directives/alert.html',
+          clickOutsideToClose: false
+        });
+
+        textAlert = response;
+
+        $mdDialog.show(alert);
+      })
+      .error(function(error){
+        console.log(error);
+      });
   }
 
   function DialogController($scope, $mdDialog) {
