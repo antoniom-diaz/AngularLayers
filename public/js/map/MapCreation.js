@@ -57,3 +57,6 @@ var map = new ol.Map({
      zoom: 2 
    }) 
 });
+
+var zoomSlider = new ol.control.ZoomSlider();
+map.addControl(zoomSlider);
