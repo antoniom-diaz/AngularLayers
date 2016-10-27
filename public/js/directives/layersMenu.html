@@ -1,10 +1,10 @@
 <div class="checkbox">
 	<label>
-		<input type="checkbox" ng-click="toggleLayer(layer)"> {{layer.get('name')}}
+		<input type="checkbox" ng-click="toggleLayer(layer)" ng-checked="layer.getVisible()"> {{layer.get('name')}}
 	</label>
 	<div class="checkbox inline" ng-repeat="layerGrouped in layer.getLayers().getArray()">
 		<label>
-			<input type="checkbox" ng-click="toggleLayer(layerGrouped)"> {{layerGrouped.get('name')}}
+			<input type="checkbox" ng-click="toggleLayer(layerGrouped)" ng-checked="layerGrouped.getVisible()"> {{layerGrouped.get('name')}}
 		</label>
 	</div>
 </div>
