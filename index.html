@@ -12,10 +12,9 @@
 		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 		<link rel="styleSheet" href="public/js/libs/angular-ui-grid/ui-grid.css"/>
 
-		<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.js"></script>
 
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
@@ -52,108 +51,64 @@
 								<div class="panel panel-default" style="margin-bottom:0">
 									<div class="panel-heading">
 										Layers
-										<div style="width:20px; height:20px; float:right">
-											<a data-toggle="collapse" href="#collapse1">
-											<img src="public/img/down-arrow.png" height="20" width="20">
-										</a>
-										</div>
+										<button class="btn" ng-click="collapseLayersPanel = !collapseLayersPanel" style="padding:0; float:right">
+											<img src="public/img/down-arrow.png" height="20" width="20" ng-show="collapseLayersPanel">
+											<img src="public/img/up-arrow.png" height="20" width="20" ng-hide="collapseLayersPanel">
+										</button>
 									</div>
-									<div id="collapse1" class="panel-collapse collapse in">
-										<div class="panel-body">
-											<div ng-repeat="layer in layers">
-												<layers-menu layer="layer"></layers-menu>
-											</div>
+									<div uib-collapse="collapseLayersPanel" class="panel-body">
+										<div ng-repeat="layer in layers">
+											<layers-menu layer="layer"></layers-menu>
 										</div>
 									</div>
 								</div>
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										Database operations
-										<div style="width:20px; height:20px; float:right">
-											<a data-toggle="collapse" href="#collapse2">
-											<img src="public/img/down-arrow.png" height="20" width="20">
-										</a>
-										</div>
+										<button class="btn" ng-click="collapseUserPanel = !collapseUserPanel" style="padding:0; float:right">
+											<img src="public/img/down-arrow.png" height="20" width="20" ng-show="collapseUserPanel">
+											<img src="public/img/up-arrow.png" height="20" width="20" ng-hide="collapseUserPanel">
+										</button>
 									</div>
-									<div id="collapse2" class="panel-collapse collapse in">
-										<div class="panel-group" id="accordion">
-											<div class="panel panel-default" style="margin:0">
-												<div class="panel-heading">
-													<h6>
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-														Add a town to the database</a>
-													</h6>
+									<div uib-collapse="collapseUserPanel" class="panel-collapse collapse in">
+										<uib-accordion>
+											<div uib-accordion-group heading="Add a town to the database" class="panel panel-default" style="margin:0">
+												<div class="form-group">
+													<label>Name:</label>
+													<input type="text" class="form-control" ng-model="townNameCreate" ng-change="changeTownNameCreate(townNameCreate)">
 												</div>
-												<div id="collapse3" class="panel-collapse collapse">
-													<div class="panel-body">
-														<div class="form-group">
-															<label>Name:</label>
-															<input type="text" class="form-control" ng-model="townNameCreate">
-														</div>
-														<div class="form-group">
-															<label>Code:</label>
-															<input type="text" class="form-control" ng-model="townCodeCreate">
-														</div>
-														<button ng-click="createElement()">
-															Add the town
-														</button>
-													</div>
+												<div class="form-group">
+													<label>Code:</label>
+													<input type="text" class="form-control" ng-model="townCodeCreate" ng-change="changeTownCodeCreate(townCodeCreate)">
 												</div>
+												<button ng-click="createElement()">
+													Add the town
+												</button>
 											</div>
-											<div class="panel panel-default" style="margin:0">
-												<div class="panel-heading">
-													<h6>
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-														Find a town</a>
-													</h6>
+											<div uib-accordion-group heading="Find a town" class="panel panel-default" style="margin:0">
+												<div class="form-group">
+													<label>Name:</label>
+													<input type="text" class="form-control" ng-model="townNameFind" ng-change="changeTownNameFind(townNameFind)">
 												</div>
-												<div id="collapse4" class="panel-collapse collapse">
-													<div class="panel-body">
-														<div class="form-group">
-															<label>Name:</label>
-															<input type="text" class="form-control" ng-model="townNameFind">
-														</div>
-														<button ng-click="findElement()">
-															Find the town
-														</button>
-													</div>
-												</div>
+												<button ng-click="findElement()">
+													Find the town
+												</button>
 											</div>
-											<div class="panel panel-default" style="margin:0">
-												<div class="panel-heading">
-													<h6>
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapse5">
-														Remove a town from the Database</a>
-													</h6>
+											<div uib-accordion-group heading="Remove a town from the Database" class="panel panel-default" style="margin:0">
+												<div class="form-group">
+													<label>Name:</label>
+													<input type="text" class="form-control" ng-model="townNameRemove" ng-change="changeTownNameRemove(townNameRemove)">
 												</div>
-												<div id="collapse5" class="panel-collapse collapse">
-													<div class="panel-body">
-														<div class="form-group">
-															<label>Name:</label>
-															<input type="text" class="form-control" ng-model="townNameRemove">
-														</div>
-														<button ng-click="removeElement()">
-															Remove the town
-														</button>
-													</div>
-												</div>
+												<button ng-click="removeElement()">
+													Remove the town
+												</button>
 											</div>
-											<div class="panel panel-default" style="margin:0">
-												<div class="panel-heading">
-													<h6>
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapse6">
-														Get the towns table</a>
-													</h6>
-												</div>
-												<div id="collapse6" class="panel-collapse collapse">
-													<div class="panel-body">
-														<button ng-click="queryDatabase()">
-															Queries the database
-														</button>
-													</div>
-												</div>
+											<div uib-accordion-group heading="Get the towns table" class="panel panel-default" style="margin:0">
+												<button ng-click="queryDatabase()">
+													Queries the database
+												</button>
 											</div>
-										</div>
+										</uib-accordion>
 									</div>
 								</div>
 							</div>

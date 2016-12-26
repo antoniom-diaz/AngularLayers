@@ -2,6 +2,9 @@ app.controller('mainController', function($scope, $mdDialog, $http){
 
   $scope.layers = [];
 
+  $scope.collapseLayersPanel = false;
+  $scope.collapseUserPanel = false;
+
   var gridData;
   var textAlert;
 
@@ -13,6 +16,22 @@ app.controller('mainController', function($scope, $mdDialog, $http){
     var toggle = !(layer.getVisible());
 
     layer.setVisible(toggle);
+  }
+
+  $scope.changeTownCodeCreate = function(townCodeCreate) {
+    $scope.townCodeCreate = townCodeCreate;
+  }
+
+  $scope.changeTownNameCreate = function(townNameCreate) {
+    $scope.townNameCreate = townNameCreate;
+  }
+
+  $scope.changeTownNameFind = function(townNameFind) {
+    $scope.townNameFind = townNameFind;
+  }
+
+  $scope.changeTownNameRemove = function(townNameRemove) {
+    $scope.townNameRemove = townNameRemove;
   }
 
   $scope.queryDatabase = function() {
