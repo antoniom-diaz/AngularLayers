@@ -1,4 +1,12 @@
 .customGrid {
-	width: 500px;
-	height: 250px;
+	margin : 0;
+}
+
+.modal-header {
+	background-color: #000000;
+	color: #FFFFFF;
+}
+
+.modal-body {
+	padding : 0;
 }

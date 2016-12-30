@@ -1,1 +1,1 @@
-var app = angular.module("angularLayers", ['ngMaterial', 'ui.grid', 'ui.bootstrap']);
+var app = angular.module("angularLayers", ['ngAnimate', 'ui.grid', 'ui.bootstrap']);

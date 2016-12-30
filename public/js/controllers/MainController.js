@@ -1,6 +1,7 @@
-app.controller('mainController', function($scope, $mdDialog, $http){
+app.controller('mainController', function($scope, $uibModal, $http){
 
   $scope.layers = [];
+  $scope.antonio = 'Holaaaaa'
 
   $scope.collapseLayersPanel = false;
   $scope.collapseUserPanel = false;
@@ -36,7 +37,7 @@ app.controller('mainController', function($scope, $mdDialog, $http){
 
   $scope.queryDatabase = function() {
 
-    $http.get('/angularlayers/api/towns')
+     $http.get('/angularlayers/api/towns')
       .success(function(response){
         
         gridData = [];
@@ -45,22 +46,23 @@ app.controller('mainController', function($scope, $mdDialog, $http){
           gridData.push({name: response[i]['name'], code : response[i]['code']});
         }
 
-        var alert = $mdDialog.alert({
-          controller: DialogController,
-          templateUrl:'public/js/directives/grid.html',
-          clickOutsideToClose: false
-        });
-        
-        $mdDialog
-          .show(alert)
-          .finally(function() {
-            alert = undefined;
+        $uibModal.open({
+          animation : true,
+          renderTo : 'map',
+          controller : function($scope, $uibModalInstance) {
+            $scope.gridData = gridData;
+
+            $scope.close = function() {
+              $uibModalInstance.dismiss('cancel');
+            }
+          },
+          templateUrl: 'public/js/directives/dialog.html'
         });
       })
       .error(function(error){
         console.log(error);
       });
-  };
+  }
 
   $scope.createElement = function() {
 
@@ -69,16 +71,20 @@ app.controller('mainController', function($scope, $mdDialog, $http){
     $http.post('/angularlayers/api/createTown', town)
       .success(function(response){
 
-        var alert = $mdDialog.alert({
-          controller:DialogController,
-          templateUrl:'public/js/directives/alert.html',
-          clickOutsideToClose: false
-        });
-
         textAlert = response;
 
-        $mdDialog.show(alert);
+        $uibModal.open({
+          animation : true,
+          renderTo : 'map',
+          controller : function($scope, $uibModalInstance) {
+            $scope.textAlert = textAlert;
 
+            $scope.close = function() {
+              $uibModalInstance.dismiss('cancel');
+            }
+          },
+          templateUrl: 'public/js/directives/alert.html'
+        });
       })
       .error(function(error){
         console.log(error);
@@ -98,14 +104,18 @@ app.controller('mainController', function($scope, $mdDialog, $http){
           gridData.push({name: response[i]['name'], code : response[i]['code']});
         }
 
-        var alert = $mdDialog.alert({
-          controller: DialogController,
-          templateUrl: 'public/js/directives/grid.html',
-          clickOutsideToClose: false
+        $uibModal.open({
+          animation : true,
+          renderTo : 'map',
+          controller : function($scope, $uibModalInstance) {
+            $scope.gridData = gridData;
+
+            $scope.close = function() {
+              $uibModalInstance.dismiss('cancel');
+            }
+          },
+          templateUrl: 'public/js/directives/dialog.html'
         });
-
-        $mdDialog.show(alert);
-
       })
       .error(function(error){
         console.log(error)
@@ -119,37 +129,24 @@ app.controller('mainController', function($scope, $mdDialog, $http){
     $http.post('/angularlayers/api/removeTown', town)
       .success(function (response){
 
-        var alert = $mdDialog.alert({
-          controller: DialogController,
-          templateUrl: 'public/js/directives/alert.html',
-          clickOutsideToClose: false
-        });
-
         textAlert = response;
 
-        $mdDialog.show(alert);
+        $uibModal.open({
+          animation : true,
+          renderTo : 'map',
+          controller : function($scope, $uibModalInstance) {
+            $scope.textAlert = textAlert;
+
+            $scope.close = function() {
+              $uibModalInstance.dismiss('cancel');
+            }
+          },
+          templateUrl: 'public/js/directives/alert.html'
+        });
       })
       .error(function(error){
         console.log(error);
       });
-  }
-
-  function DialogController($scope, $mdDialog) {
-
-    $scope.gridData = gridData;
-    $scope.textAlert = textAlert;
-
-    $scope.hide = function() {
-      $mdDialog.hide();
-    };
-
-    $scope.cancel = function() {
-      $mdDialog.cancel();
-    };
-
-    $scope.answer = function(answer) {
-      $mdDialog.hide(answer);
-    };
   }
 });
 

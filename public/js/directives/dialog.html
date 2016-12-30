@@ -1,8 +1,8 @@
 <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Towns</h3>
+    <h3 class="modal-title" id="modal-title">Modal</h3>
 </div>
 <div class="modal-body" id="modal-body">
-    {{textAlert}}
+    <div ui-grid="{ data: gridData }" class="customGrid"></div>
 </div>
 <div class="modal-footer">
     <button class="btn" ng-click="close()">Close</button>
