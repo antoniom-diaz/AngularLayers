@@ -1,7 +1,6 @@
 app.controller('mainController', function($scope, $uibModal, $http){
 
   $scope.layers = [];
-  $scope.antonio = 'Holaaaaa'
 
   $scope.collapseLayersPanel = false;
   $scope.collapseUserPanel = false;
