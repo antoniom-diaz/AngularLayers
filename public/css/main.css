@@ -10,3 +10,12 @@
 .modal-body {
 	padding : 0;
 }
+
+.subpanel-body {
+	max-height : 32vh;
+	overflow-x : hidden;
+}
+
+#database-menu-body {
+	padding: 0;
+}
