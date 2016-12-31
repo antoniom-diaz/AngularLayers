@@ -58,5 +58,7 @@ var map = new ol.Map({
    }) 
 });
 
+var scaleLineControl = new ol.control.ScaleLine();
+map.addControl(scaleLineControl);
 var zoomSlider = new ol.control.ZoomSlider();
 map.addControl(zoomSlider);

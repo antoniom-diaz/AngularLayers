@@ -23,30 +23,25 @@
 		<script src="public/js/directives/layersMenu.js"></script>
 		
 	</head>
-	<header>
-		<div style="height: 90px; background-color:#000000">
-			<div style="padding-top:10px; padding-left:10px">
-				<img src="public/img/header.png" height="70">
-			</div>
-		</div>
-	</header>
 	<body ng-app="angularLayers">
-
+		<div id="header">
+			<img id="header-image" src="public/img/header.png">
+		</div>
 		<div>
 			<div class="container-fluid" ng-controller="mainController">
-				<div class="row content" style="position:fixed; height:100%; width:100%">
-					<div class="col-sm-2" style="height:100%; padding-right:0">
-						<div class="panel panel-default" style="height:100%">
+				<div class="row-fluid">
+					<div class="col-sm-2 no-padding">
+						<div id="user-menu" class="panel panel-default">
 							<div class="panel-heading">
 								<div>
 									<h4>User menu</h4>
 								</div>
 							</div>
-							<div class="panel-body"  style="padding:0">
-								<div class="panel panel-default" style="margin-bottom:0">
+							<div class="panel-body no-padding">
+								<div class="panel panel-default">
 									<div class="panel-heading">
 										Layers
-										<button class="btn" ng-click="collapseLayersPanel = !collapseLayersPanel" style="padding:0; float:right">
+										<button class="btn btn-collapse" ng-click="collapseLayersPanel = !collapseLayersPanel">
 											<img src="public/img/down-arrow.png" height="20" width="20" ng-show="collapseLayersPanel">
 											<img src="public/img/up-arrow.png" height="20" width="20" ng-hide="collapseLayersPanel">
 										</button>
@@ -60,14 +55,14 @@
 								<div class="panel panel-default">
 									<div class="panel-heading">
 										Database operations
-										<button class="btn" ng-click="collapseUserPanel = !collapseUserPanel" style="padding:0; float:right">
+										<button class="btn btn-collapse" ng-click="collapseUserPanel = !collapseUserPanel">
 											<img src="public/img/down-arrow.png" height="20" width="20" ng-show="collapseUserPanel">
 											<img src="public/img/up-arrow.png" height="20" width="20" ng-hide="collapseUserPanel">
 										</button>
 									</div>
-									<div uib-collapse="collapseUserPanel" id="database-menu-body" class="panel-body subpanel-body">
+									<div uib-collapse="collapseUserPanel" class="panel-body subpanel-body no-padding">
 										<uib-accordion>
-											<div uib-accordion-group heading="Add a town to the database" class="panel panel-default" style="margin:0">
+											<div uib-accordion-group heading="Add a town to the database" class="panel panel-default">
 												<div class="form-group">
 													<label>Name:</label>
 													<input type="text" class="form-control" ng-model="townNameCreate" ng-change="changeTownNameCreate(townNameCreate)">
@@ -80,7 +75,7 @@
 													Add the town
 												</button>
 											</div>
-											<div uib-accordion-group heading="Find a town" class="panel panel-default" style="margin:0">
+											<div uib-accordion-group heading="Find a town" class="panel panel-default">
 												<div class="form-group">
 													<label>Name:</label>
 													<input type="text" class="form-control" ng-model="townNameFind" ng-change="changeTownNameFind(townNameFind)">
@@ -89,7 +84,7 @@
 													Find the town
 												</button>
 											</div>
-											<div uib-accordion-group heading="Remove a town from the Database" class="panel panel-default" style="margin:0">
+											<div uib-accordion-group heading="Remove a town from the Database" class="panel panel-default">
 												<div class="form-group">
 													<label>Name:</label>
 													<input type="text" class="form-control" ng-model="townNameRemove" ng-change="changeTownNameRemove(townNameRemove)">
@@ -98,7 +93,7 @@
 													Remove the town
 												</button>
 											</div>
-											<div uib-accordion-group heading="Get the towns table" class="panel panel-default" style="margin:0">
+											<div uib-accordion-group heading="Get the towns table" class="panel panel-default">
 												<button class="btn" ng-click="queryDatabase()">
 													Queries the database
 												</button>
@@ -109,10 +104,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-sm-10" style="padding-left:0">
-						<div class="affix" style="height:100%; width:100%; background-color:#FFFFFF">
-							<div style="width:100%; height:100%" id="map"></div>
-						</div>
+					<div class="col-sm-10 no-padding">
+						<div id="map"></div>
 					</div>
 				</div>
 			</div> 
