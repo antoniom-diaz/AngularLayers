@@ -58,6 +58,18 @@ var map = new ol.Map({
    }) 
 });
 
+var coordinatesControl = new ol.control.MousePosition({
+  coordinateFormat : function(coordinates) {
+    var x = coordinates[0].toFixed(2);
+    var y = coordinates[1].toFixed(2);
+    var textCoordinates = 'EPSG : 3857 Datum : WGS84 - coordinates: ' + x +', ' + y;
+    return textCoordinates;
+  },
+  target : document.getElementById('coordinates-window'),
+  className : 'custom-mouse-position',
+  undefinedHTML : 'EPSG : 3857 Datum : WGS84'
+});
+map.addControl(coordinatesControl);
 var scaleLineControl = new ol.control.ScaleLine();
 map.addControl(scaleLineControl);
 var zoomSlider = new ol.control.ZoomSlider();

@@ -26,6 +26,18 @@
 	margin-top: 0 !important;
 }
 
+.coordinates-window {
+	position: absolute;
+	font-size: 13px;
+	z-index: 99999;
+	right: 20px;
+	bottom: 0px;
+}
+
+.ol-attribution {
+	display: none;
+}
+
 .no-padding {
 	padding : 0 !important;
 }
