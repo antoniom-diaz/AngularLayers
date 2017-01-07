@@ -26,6 +26,23 @@
 	margin-top: 0 !important;
 }
 
+.gazetteer {
+	position: absolute;
+	z-index: 99999;
+	right : 20px;
+	top : 10px;
+}
+
+.gazetteer > .input-group {
+	width : 20vw !important;
+}
+
+.ui-select-match > .form-control {
+	text-overflow: ellipsis !important;
+	max-width: 20vw !important;
+	min-width: 20vw !important;
+}
+
 .coordinates-window {
 	position: absolute;
 	font-size: 13px;

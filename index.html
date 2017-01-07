@@ -7,16 +7,19 @@
 		<title>AngularLayers</title>
 
 		<link rel="stylesheet" href="public/css/main.css">
-		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-		<link rel="stylesheet" href="http://openlayers.org/en/master/css/ol.css" type="text/css">
-		<link rel="styleSheet" href="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css"/>
+		<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://openlayers.org/en/master/css/ol.css">
+		<link rel="styleSheet" href="http://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.css"/>
+		<link rel="styleSheet" href="http://cdn.rawgit.com/angular-ui/ui-select/master/dist/select.min.css"/>
 
-		<script src="http://openlayers.org/en/master/build/ol.js" type="text/javascript"></script>
+		<script src="http://openlayers.org/en/master/build/ol.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 		
-		<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.js"></script>
+		<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-2.3.1.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-		<script src="https://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-sanitize.min.js"></script>
+		<script src="http://cdn.rawgit.com/angular-ui/bower-ui-grid/master/ui-grid.min.js"></script>
+		<script src="http://cdn.rawgit.com/angular-ui/ui-select/master/dist/select.min.js"></script>
 
 		<script src="public/js/app.js"></script>
 		<script src="public/js/controllers/MainController.js"></script>
@@ -31,7 +34,7 @@
 			<div class="container-fluid" ng-controller="mainController">
 				<div class="row-fluid">
 					<div class="col-sm-2 no-padding">
-						<div id="user-menu" class="panel panel-default">
+						<div id="user-menu" class="panel panel-default" ng-cloak>
 							<div class="panel-heading">
 								<div>
 									<h4>User menu</h4>
@@ -106,6 +109,22 @@
 					</div>
 					<div class="col-sm-10 no-padding">
 						<div id="map">
+							<div class="gazetteer">
+								<div class="input-group" ng-cloak>
+									<ui-select theme="bootstrap" ng-model="gazetteer.selectedPlace" ng-change="placeSelection(gazetteer.selectedPlace)">
+										<ui-select-match placeholder="Search a place">{{$select.selected.display_name}}</ui-select-match>
+										<ui-select-choices repeat="place in places" refresh="refreshPlaces($select.search)" refresh-delay="3">
+											<div ng-bind-html="place.display_name | highlight : $select.search"></div>
+										</ui-select-choices>
+									</ui-select>
+
+									<span class="input-group-btn">
+										<button type="button" ng-click="clearGazetteer()" class="btn btn-default">
+											<span class="glyphicon glyphicon-trash"></span>
+										</button>
+									</span>
+								</div>
+							</div>
 							<div id="coordinates-window" class="well coordinates-window"></div>
 						</div>
 					</div>
