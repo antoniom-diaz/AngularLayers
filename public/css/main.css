@@ -3,8 +3,10 @@
 }
 
 .modal-header {
-	background-color: #000000;
-	color: #FFFFFF;
+	/*background-color: #000000;
+	color: #FFFFFF;*/
+	background-color: #F5F5F5;
+	color: #000;
 }
 
 .modal-body {
@@ -28,7 +30,7 @@
 
 .gazetteer {
 	position: absolute;
-	z-index: 99999;
+	z-index: 1;
 	right : 20px;
 	top : 10px;
 }
@@ -46,7 +48,7 @@
 .coordinates-window {
 	position: absolute;
 	font-size: 13px;
-	z-index: 99999;
+	z-index: 1;
 	right: 20px;
 	bottom: 0px;
 }

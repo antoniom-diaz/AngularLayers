@@ -52,9 +52,12 @@ var map = new ol.Map({
       baseMapsGroup, administrativeBoundaryGroup
    ], 
    target: 'map', 
-   view: new ol.View({ 
+   view: new ol.View({
+     extent: ol.proj.get("EPSG:3857").getExtent(),
      center: [0, 0], 
-     zoom: 2 
+     zoom: 2,
+     minZoom: 2,
+     maxZoom: 20
    }) 
 });
 
