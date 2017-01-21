@@ -1,29 +1,35 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var morgan = require('morgan');
 var app = express();
 
+// MongoDB Connection
 mongoose.connect('mongodb://localhost:27017/angularLayers');
 
+// MongoDB Model
 var Town = mongoose.model('Town',{
     name: String,
     code: String
 });
 
-app.configure(function() {  
-    // Localización de los ficheros estÃ¡ticos
-    app.use('/public', express.static(__dirname + '/public'));
-    // Muestra un log de todos los request en la consola        
-    app.use(express.logger('dev'));
-    // Permite cambiar el HTML con el método POST                   
-    app.use(express.bodyParser());
-    // Simula DELETE y PUT                      
-    app.use(express.methodOverride());
-});
+// Make available static files
+app.use('/public', express.static(__dirname + '/public'));
+
+// Server logging
+app.use(morgan('dev'));
+
+// Parses Post data
+app.use(bodyParser.urlencoded({
+    extended: true,
+}));
+app.use(bodyParser.json());
 
 app.get('/angularlayers', function(req, res){
-	res.sendfile('./index.html');
+	res.sendFile(__dirname + '/index.html');
 });
 
+// REST API
 app.get('/angularlayers/api/towns', function(req, res) {  
 
     Town.find(function(err, towns) {
@@ -77,6 +83,7 @@ app.post('/angularlayers/api/removeTown', function(req, res){
 
 });
 
+// Port configuration
 app.listen(8080, function(){
 	console.log('Listening on port 8080');
 });
