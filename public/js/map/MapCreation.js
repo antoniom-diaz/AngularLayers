@@ -4,9 +4,9 @@ var openStreetMapLayer = new ol.layer.Tile({
         source: new ol.source.OSM() 
      });
 
-var pnoaLayer = new ol.layer.Image({
+var pnoaLayer = new ol.layer.Tile({
           name: 'PNOA Map',
-          source: new ol.source.ImageWMS({
+          source: new ol.source.TileWMS({
             url: 'http://www.ign.es/wms-inspire/pnoa-ma',
             params : {
                         'LAYERS' : 'OI.OrthoimageCoverage'
@@ -20,9 +20,9 @@ var baseMapsGroup = new ol.layer.Group({
   layers: [openStreetMapLayer, pnoaLayer]
 });
 
-var adminLayer = new ol.layer.Image({
+var adminLayer = new ol.layer.Tile({
           name: 'Spain administrative units',
-          source: new ol.source.ImageWMS({
+          source: new ol.source.TileWMS({
             url: 'http://www.ign.es/wms-inspire/unidades-administrativas',
             params : {
                         'LAYERS' : 'AU.AdministrativeBoundary'
@@ -31,11 +31,11 @@ var adminLayer = new ol.layer.Image({
           visible: false
         });
 
-var usaStatesLayer = new ol.layer.Image({
+var usaStatesLayer = new ol.layer.Tile({
           name: 'USA States',
           visible: false,
           extent: [-13884991, 2870341, -7455066, 6338219],
-          source: new ol.source.ImageWMS({
+          source: new ol.source.TileWMS({
             url: 'http://demo.boundlessgeo.com/geoserver/wms',
             params: {'LAYERS': 'topp:states'},
             serverType: 'geoserver'
